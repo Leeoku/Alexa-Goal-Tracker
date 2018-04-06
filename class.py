@@ -1,7 +1,7 @@
 import logging 
 
 from flask import Flask
-from flask_ask import Ask, statement
+from flask_ask import (Ask, statement)
 
 app = Flask(__name__)
 ask = Ask(app, '/')
@@ -13,9 +13,10 @@ def addGoalIntent(GOAL):
 
 @ask.session_ended
 @ask.launch
+@ask.intent('Unhandled')
 def launchRequest():
   return statement('Welcome to goal tracker!')
-@ask.intent('Unhandled')
 
-if __name__ == '__main__':
-  app.run(debug=True)
+
+#if __name__ == '__main__':
+app.run(debug=True)
